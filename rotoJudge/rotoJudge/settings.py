@@ -104,7 +104,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'rotoJudge.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'football.wsgi.application'
+WSGI_APPLICATION = 'rotoJudge.wsgi.application'
 
 TEMPLATE_DIRS = (
     '.SiteNavigator/Templates/',
