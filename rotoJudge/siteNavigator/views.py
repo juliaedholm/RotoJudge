@@ -1,6 +1,9 @@
 # Create your views here.
 # Create your views here.
 from django.http import HttpResponse
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.loader import get_template
 from django.template import Context, RequestContext
@@ -19,8 +22,15 @@ def home(request):
    return render_to_response('heroHome.html')
 
 def CreateAccount(request):
-    t = get_template('CreateAccount.html')
-    c = RequestContext(request, {'smiley':'cheese',})
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponseRedirect("/football/home'")
+    else:
+        form = UserCreationForm()
+    c = RequestContext(request, {'form': form,})
+    t=get_template('registration/register.html')
     return HttpResponse(t.render(c))
 
 def loginPage(request):

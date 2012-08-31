@@ -31,6 +31,23 @@ class AuthUser(models.Model):
     class Meta:
         db_table = u'auth_user'
 
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+
+class UserProfile(models.Model):
+    # This field is required.
+    user = models.OneToOneField(User)
+    # Other fields here
+    leage_creation_url = models.CharField(max_length=75)
+    league_ID = models.IntegerField()
+    owner_ID = models.IntegerField()
+    
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+post_save.connect(create_user_profile, sender=User)
+
 class DjangoContentType(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)

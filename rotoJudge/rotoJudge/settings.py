@@ -88,7 +88,7 @@ SECRET_KEY = 'br0uzlqikxu_w9%tu)9k(#t6g(2o!1*xj3r-3)mv8=_8+tvkf)'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,11 +103,13 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'rotoJudge.urls'
 
+AUTH_PROFILE_MODULE = 'siteNavigator.UserProfile'
+
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'rotoJudge.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '.SiteNavigator/Templates/',
+    'siteNavigator/Templates/',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
