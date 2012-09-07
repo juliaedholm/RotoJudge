@@ -26,7 +26,10 @@ def CreateAccount(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             new_user = form.save()
-            return HttpResponseRedirect("/football/home'")
+            LeagueURL=new_user.LegueURL
+            user.name=new_user.OwnerName
+            existingLeague=FootballTeams.objects.filter(rj_team_url=LeagueURL, rj_owner_Name=user.name)
+            return HttpResponseRedirect("/football/loginComplete/existingLeague.rj_owner_ID")
     else:
         form = UserCreationForm()
     c = RequestContext(request, {'form': form,})
@@ -38,6 +41,11 @@ def loginPage(request):
     c = RequestContext(request, {'blah':'cheese',})
     return HttpResponse(t.render(c))
     #return render_to_response('TestC.html',{'blah':'buh',}, context_instance=RequestContext(request))
+
+def loginComplete(request, owner_id,):
+    t = get_template('SuccessfullLoginPage.html')
+    c = RequestContext(request, {'blah':'cheese',})
+    return HttpResponse(t.render(c))
 
 def LeagueSample(request):
     ownersInLeague=FootballTeams.objects.filter(rj_league_id='1')
