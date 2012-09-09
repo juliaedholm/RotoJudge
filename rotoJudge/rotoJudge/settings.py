@@ -3,6 +3,11 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+import os.path
+
+#Get the absolute path of the settings.py file's directory
+BASEPATH = os.path.dirname(os.path.realpath(__file__ ))
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -67,7 +72,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    '/Users/juliaedholm/Desktop/RotoJudge/football/lib/python2.7/site-packages/bootstrapped/',
+    #'/Users/juliaedholm/Desktop/RotoJudge/football/lib/python2.7/site-packages/bootstrapped/',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -109,7 +114,7 @@ AUTH_PROFILE_MODULE = 'siteNavigator.UserProfile'
 WSGI_APPLICATION = 'rotoJudge.wsgi.application'
 
 TEMPLATE_DIRS = (
-    'siteNavigator/Templates/',
+    os.path.join(BASEPATH, "siteNavigator/Templates/"),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
